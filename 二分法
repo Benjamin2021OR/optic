@@ -1,0 +1,15 @@
+       PROGRAM WRITETEXT
+       IMPLICIT NONE
+       INTEGER,PARAMETER :: NE=6!fortran90 语法定义变量
+       DOUBLE PRECISION A(6,6),B(6,6)
+       INTEGER I,J,M
+!     非二进制读写文本文档
+       DO 10 I=1,NE
+             DO 10 J=1,NE
+                   A(I,J)=I+J
+    10 CONTINUE
+       OPEN(6,FILE='State.txt',STATUS='UNKNOWN')
+       WRITE(6,100) ((A(I,J),J=1,6),I=1,6)!写入txt
+       CLOSE(6)
+    100   FORMAT(6(E16.9,1X))
+       ENDPROGRAM WRITETEXT
